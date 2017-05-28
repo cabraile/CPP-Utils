@@ -15,7 +15,7 @@
 *   N is the number of returning values
 */
 
-namespace aux
+namespace utils
 {
   /*
   *   => Adjacency Matrix Graph
@@ -233,7 +233,7 @@ namespace aux
         min = (min > val) ? val : min;
       }
     }
-    
+
     for(std::size_t i = 0; i < size ; i++)
     {
       for(std::size_t j = 0; j < size ; j++)

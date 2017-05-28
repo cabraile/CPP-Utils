@@ -5,23 +5,26 @@
 #include <string>
 #include <vector>
 
-// > Segmentation fault when dir_path doesn't exists
-template <typename FILE_T>
-std::vector<std::string> getFiles(std::string dir_path, FILE_T file_type)
+namespace utils
 {
-  DIR *dir = opendir(dir_path.c_str());
-  struct dirent *dir_file = readdir(dir);
-  std::vector< std::string > files;
-  while (dir_file != NULL)
+  // > Segmentation fault when dir_path doesn't exists
+  template <typename FILE_T>
+  std::vector<std::string> getFiles(std::string dir_path, FILE_T file_type)
   {
-    if (dir_file->d_type == file_type && dir_file->d_name[0] != '.')
+    DIR *dir = opendir(dir_path.c_str());
+    struct dirent *dir_file = readdir(dir);
+    std::vector< std::string > files;
+    while (dir_file != NULL)
     {
-      files.push_back(dir_file->d_name);
+      if (dir_file->d_type == file_type && dir_file->d_name[0] != '.')
+      {
+        files.push_back(dir_file->d_name);
+      }
+      dir_file = readdir(dir);
     }
-    dir_file = readdir(dir);
+    closedir(dir);
+    return files;
   }
-  closedir(dir);
-  return files;
 }
 
 #endif
