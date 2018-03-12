@@ -1,2 +1,2 @@
 # CPP-Utils
-Some usefull implemented tools to CPP developing.
+Some useful implemented tools to CPP developing.
